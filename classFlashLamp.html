@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function FlashLamp(status, battery) {           //bất kì thuộc tính và phương thức đều cần this.
+        this.FlashLamp = function () {              //hàm khởi tạo
+            this.status = status;
+            this.battery = battery;
+        }
+
+        this.Battery = function (energy) {
+            this.energy = energy;
+            this.setEnergy = function () {
+                return this.energy;
+            }
+            this.getEnergy = function () {
+                return this.energy++;
+            }
+            this.decreaseEnergy = function () {
+                return this.energy--;
+            }
+        }
+        this.turnOn = function () {
+            this.status = true;
+        }
+        this.turnOff = function () {
+            this.status = false;
+        }
+        this.setBattery = function () {
+            return this.battery !== "";
+        }
+        this.getBatteryInfo = function () {
+            return (this.battery + " " + this.energy);
+        }
+        this.light = function () {                   //hàm chiếu sáng
+            if (this.status) {
+                alert("Lighting");
+            } else {
+                alert("Not Lighting");
+            }
+        }
+    }
+
+    let flashLamp = new FlashLamp(true, "AAA");
+    flashLamp.FlashLamp();                                         //Phải gọi hàm khởi tạo để lấy thuộc tính trước
+    console.log(flashLamp.status);
+    flashLamp.Battery(85);                                         //Trong phương thức(hàm) phải có return mới được in ra
+    console.log(flashLamp.setEnergy());
+    flashLamp.turnOn();
+    console.log(flashLamp.status)
+    flashLamp.turnOff();                            //thay đổi status ban đầu sang false -> đổi kết quả gọi hàm light()
+    console.log(flashLamp.setBattery());
+    console.log(flashLamp.getBatteryInfo());
+    flashLamp.light();
+</script>
+</body>
+</html>
