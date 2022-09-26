@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="game"></div>
+<script>
+    function Hero(image, top, left, size, range) {
+        this.image = image;
+        this.top = top;
+        this.left = left;
+        this.size = size;
+        this.range = range;
+        this.getHeroElement = function () {
+            return '<img width="' + this.size + '"' +
+                ' height="' + this.size + '"' +
+                ' src="' + this.image + '"' +
+                ' style="top: ' + this.top + 'px; left:' + this.left + 'px;position:absolute;" />';
+        }
+
+        this.moveRound = function () {
+            if (this.left <= window.innerWidth - this.size - this.range) {
+                if (this.top < this.range) {
+                    this.left += this.range;
+                    console.log("left: " + this.left);
+                }
+            }
+            if (this.left > window.innerWidth - this.size - this.range) {
+                if (this.top <= window.innerHeight - this.size - this.range) {
+                    this.top += this.range;
+                    console.log("top: " + this.top);
+                }
+            }
+            if (this.top > window.innerHeight - this.size - this.range) {
+                if (this.left >= this.range) {
+                    this.left -= this.range;
+                    console.log("left: " + this.left);
+                }
+            }
+            if (this.left < this.range) {
+                if (this.top >= this.range) {
+                    this.top -= this.range;
+                    console.log("top: " + this.top)
+                }
+            }
+        }
+
+    }
+
+    let hero = new Hero('nikoMaki.png', 20, 20, 340, 50);
+
+    function start() {
+        hero.moveRound();
+        document.getElementById('game').innerHTML = hero.getHeroElement();
+        setTimeout(start, 500)
+    }
+
+    start();
+</script>
+</body>
+</html>
