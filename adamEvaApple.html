@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Apple() {
+        this.Apple = function (weight) {            //hàm khởi tạo
+            this.weight = weight;
+        }
+        this.decrease = function () {
+            this.weight--                           //không viết return this.weight++;
+            return this.weight;
+        }
+        this.isEmpty = function () {
+            return this.weight === 0;
+        }
+        this.getAppleWeight = function (numOfBitten) {      //sai KQ
+            return this.weight - numOfBitten;
+        }
+    }
+
+    function Human() {
+        this.Human = function (name, gender, weight) {      //hàm khởi tạo
+            this.name = name;
+            this.gender = gender;
+            this.weight = weight;
+        }
+
+        this.isMale = function () {
+            return this.gender === "Male";
+        }
+        this.getName = function () {
+            return this.name;
+        }
+        this.getWeight = function () {
+            return this.weight;
+        }
+        this.getInfo = function () {
+            return this.isMale() + " " + this.getName() + " " + this.getWeight();
+        }
+
+        this.setGender = function () {                  //hàm thay đổi giới tính
+            return this.isMale ? "Female" : "Male";
+        }
+        this.setName = function (newName) {
+            return newName;
+        }
+        this.setWeight = function (numOfTimesToEat) {
+            return this.weight + numOfTimesToEat;
+        }
+        this.eat = function () {
+            return this.weight += 1;          //return this.weight++ sẽ cho ra kết quả chưa được cộng; this.weight++ return this.weight
+        }
+        this.say = function () {
+            return prompt("Enter a string");
+        }
+    }
+
+    let apple = new Apple();
+    let human01 = new Human();
+    let human02 = new Human();
+
+    apple.Apple(10);
+    human01.Human("Adam", "Male", 60);
+    human02.Human("Eva", "Female", 50);
+
+    console.log(apple.decrease())
+    console.log(apple.getAppleWeight(7));       //chạy kết quả lưu dồn từ các dòng code chạy trước
+    console.log(human01.getName());
+    console.log(human01.setName("Tung"))
+    console.log(human01.eat());
+    console.log(human01.getInfo());             //chạy kết quả lưu dồn từ các dòng code chạy trước
+    console.log(human02.getInfo());
+    console.log(human01.say());
+    console.log(human01.setGender())
+    console.log(human01.setWeight(4))
+</script>
+</body>
+</html>
